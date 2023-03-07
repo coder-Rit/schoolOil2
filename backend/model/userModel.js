@@ -31,13 +31,9 @@ const userSchema = new mongoose.Schema({
     },
     role:{
         type: String,
-        default:"student",
+        default:"teacher",
     }, 
-    facultyID:{
-        type: String,
-        required: true,
-        default:"0000",
-    }, 
+    
     clgShortName:{
         type: String, 
         default:""
