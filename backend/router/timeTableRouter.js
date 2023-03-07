@@ -6,5 +6,5 @@ const Router = express.Router()
 
 Router.route("/timeTable/:id").get(isAuthenticated,getTimetableByID) 
 Router.route("/timeTable/update").post(isAuthenticated,authorizedRole("teacher"),updateTimeTable) 
-
+ 
 module.exports =Router    

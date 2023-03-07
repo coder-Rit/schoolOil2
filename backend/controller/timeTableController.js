@@ -3,12 +3,14 @@ const timeTableModel = require("../model/timeTableModel");
 
 // creating a timeTable
 exports.updateTimeTable = catchAsyncErorr(async (req, res, next) => {
-  let timeTable
-  if (req.body.selfID ===null) {
-    timeTable = await timeTableModel.create(req.body);
+
+   let timeTable
+  if (req.body._id) {
+    timeTable = await timeTableModel.findByIdAndUpdate(req.body._id,req.body)
   }
   else{ 
-   timeTable = await timeTableModel.findByIdAndUpdate(req.body.selfID,req.body)
+   
+    timeTable = await timeTableModel.create(req.body);
   }
  
     res.status(201).json({
@@ -16,6 +18,7 @@ exports.updateTimeTable = catchAsyncErorr(async (req, res, next) => {
       timeTable
     });
   });
+  
 
 // get timetable by id
 exports.getTimetableByID = catchAsyncErorr(async (req, res, next) => {

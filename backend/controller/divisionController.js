@@ -4,9 +4,11 @@ const ErrorHandler = require("../utils/errorHandler");
 
 //creating new divison
 exports.updateDivision = catchAsyncErorr(async (req, res, next) => {  
-   if (typeof req.body._id==="undefined" ) {
- 
-     division = await divisionsModel.create(req.body);
+   if (req.body._id===null ) {
+      let a = req.body
+      delete a._id
+      console.log(a);
+     division = await divisionsModel.create(a);
     }else{
       division = await divisionsModel.findByIdAndUpdate(req.body._id,req.body)
       
@@ -25,7 +27,8 @@ exports.getDivisions = catchAsyncErorr(async (req, res, next) => {
     course: req.body.course,
     clgShortName: req.body.clgShortName, 
     department:req.body.department,
-    year:{$in:req.body.year}
+    year:{$in:req.body.year},
+    status:"inUse"
   });
  
   if (divisions==="[]") {
@@ -63,7 +66,9 @@ exports.updateDivisionById = catchAsyncErorr(async (req, res, next) => {
 
 // updating updateDivisionById
 exports.updateDivisionBydata = catchAsyncErorr(async (req, res, next) => {
-   const updatedDivision = await divisionsModel.findOneAndUpdate(req.body.dataForFinding,req.body.dataForUpdate);
+
+  console.log(req.body);
+   const updatedDivision = await divisionsModel.findByIdAndUpdate(req.body.dataForFinding,req.body.dataForUpdate);
 
   if (!updatedDivision) {
     return next(new ErrorHandler("division not updated",404))

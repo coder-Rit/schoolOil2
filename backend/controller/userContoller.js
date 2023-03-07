@@ -8,26 +8,14 @@ const sendJwt = require("../utils/sendJwt");
 
 
 // signUp
-exports.signUp = catchAsyncErorr(async (req, res, next) => {
- 
-  let a = req.body 
+exports.signUp = catchAsyncErorr(async (req, res, next) => {  
+  let a  = req.body
   delete a.OTP
-console.log(a);
-  // problem here
-  const facultyID = await facultyIdModel.findOne({ ID: req.body.facultyID });
-  console.log(facultyID);
-  if (!facultyID) {
-    return next(new ErrorHandler("Invailed faculty ID", 404));
-  } else {
-    if (req.body.facultyID !== "0000") {
-      req.body.role = "teacher";
-      await facultyIdModel.findByIdAndDelete(facultyID._id);
-    }
-
     const newAcc = await userModel.create(a);
+
     sendJwt(newAcc, res, "Account is crated successfully", 201, req);
-  } 
-});
+  
+}); 
  
 // loged in
 exports.login = catchAsyncErorr(async (req, res, next) => {
@@ -99,12 +87,16 @@ exports.updatePassword = catchAsyncErorr(async (req, res, next) => {
 // get user detail
 exports.getUserDetails = catchAsyncErorr(async (req, res, next) => {
   const user = await userModel.findById(req.user.id);
+  console.log(user);
+   if (!user) {
+    return next(new ErrorHandler("user not found", 404));
+  }
 
   res.status(200).json({
     success: true,
     user,
   });
-});
+}); 
 
 
 //update user 

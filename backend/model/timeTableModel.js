@@ -5,10 +5,7 @@ const timeTableSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     required: true,
   },
-  selfID: {
-    type: mongoose.Types.ObjectId,
-    default: null,
-  },
+  
   clgShortName: {
     type: String,
     required: true,

@@ -63,13 +63,13 @@ exports.genrateOtp_email = catchAsyncErorr(async( req,res,next)=>{
        port: 587,
        secure: false, // true for 465, false for other ports
        auth: {
-           user: "elda42@ethereal.email", // generated ethereal user
-           pass: "bVVFz1NW7hFNGxAHvR", // generated ethereal password
+           user: "daphnee.reichel78@ethereal.email", // generated ethereal user
+           pass: "rKN11VGyMKyjtY4VNe", // generated ethereal password
        },
    });
 
    let message = {
-       from: '"schoolOil" <elda42@ethereal.email>', // sender address
+       from: '"schoolOil" <daphnee.reichel78@ethereal.email>', // sender address
        to: `${req.body.email}`, // list of receivers
        subject: "Verify your email", // Subject line
        text: "", // plain text body
