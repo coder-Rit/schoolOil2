@@ -9,9 +9,8 @@ const sendJwt = require("../utils/sendJwt");
 
 // signUp
 exports.signUp = catchAsyncErorr(async (req, res, next) => {  
-  let a  = req.body
-  delete a.OTP
-    const newAcc = await userModel.create(a,{ wtimeout: 5000 });
+   
+    const newAcc = await userModel.create(req.body);
 
     sendJwt(newAcc, res, "Account is crated successfully", 201, req);
   
