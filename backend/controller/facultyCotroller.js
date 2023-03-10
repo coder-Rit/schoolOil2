@@ -8,9 +8,7 @@ const ErrorHandler = require("../utils/errorHandler");
 exports.createfaultyORupdate = catchAsyncErorr(async (req, res, next) => {
   let userDetail = await facultyModel.findOne({ email: req.body.email });
 
-  if (req.body.facultyID === "0000") {
-    return next(new ErrorHandler("Invalid faculty ID", 404));
-  }
+ 
 
   if (!userDetail) {
     userDetail = await facultyModel.create(req.body);
@@ -21,9 +19,7 @@ exports.createfaultyORupdate = catchAsyncErorr(async (req, res, next) => {
     );
   }
 
-  if (req.user.facultyID !== "0000") {
-    await facultyIdModel.findOneAndDelete({ ID: req.body.facultyID });
-  }
+   
 
   res.status(201).json({
     status: true,
