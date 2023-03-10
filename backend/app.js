@@ -1,14 +1,7 @@
 const express = require('express')
 const error = require('./middleware/error')
-const facultyRouter = require('./router/facultyRouter')
-const userRouter = require('./router/userRouter') 
-const studentRouter = require('./router/studentRouter')
-const lectuerRouter = require('./router/lectuerRouter')
-const facultyID = require('./router/facultyIDRouter')
-const registerClgRouter = require('./router/registerClgRouter')
-const divisionRouter = require('./router/divisionRouter')
-const timeTableRouter = require('./router/timeTableRouter')
-const messageRouter = require('./router/messageRouter')
+const connectTODatabase = require('./config/dataBase')
+
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors  = require("cors")
@@ -25,6 +18,21 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload())
+
+
+//connection to the data base
+connectTODatabase()
+
+
+const facultyRouter = require('./router/facultyRouter')
+const userRouter = require('./router/userRouter') 
+const studentRouter = require('./router/studentRouter')
+const lectuerRouter = require('./router/lectuerRouter')
+const facultyID = require('./router/facultyIDRouter')
+const registerClgRouter = require('./router/registerClgRouter')
+const divisionRouter = require('./router/divisionRouter')
+const timeTableRouter = require('./router/timeTableRouter')
+const messageRouter = require('./router/messageRouter')
 
 
 app.use("/api/v1", facultyRouter)
