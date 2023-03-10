@@ -33,8 +33,7 @@ const registerClgRouter = require('./router/registerClgRouter')
 const divisionRouter = require('./router/divisionRouter')
 const timeTableRouter = require('./router/timeTableRouter')
 const messageRouter = require('./router/messageRouter')
-const databaseRouter = require('./router/databaseRouter')
-
+ 
 
 
 app.use("/api/v1", facultyRouter)
@@ -46,8 +45,7 @@ app.use("/api/v1",registerClgRouter )
 app.use("/api/v1",divisionRouter)
 app.use("/api/v1",timeTableRouter)
 app.use("/api/v1",messageRouter)
-app.use("/api/v1",databaseRouter)
-
+ 
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
