@@ -32,8 +32,11 @@ const userSchema = new mongoose.Schema({
     role:{
         type: String,
         default:"teacher",
-    }, 
-    
+    },
+    OTP:{
+         type: String,
+    }
+    ,
     clgShortName:{
         type: String, 
         default:""
