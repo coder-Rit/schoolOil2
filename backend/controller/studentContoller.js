@@ -17,7 +17,7 @@ exports.createAcc = catchAsyncErorr(async (req, res, next) => {
 
   res.status(201).json({
     status: true,
-     user,
+    user,
   });
 });
 

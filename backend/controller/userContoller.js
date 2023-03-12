@@ -9,8 +9,9 @@ const sendJwt = require("../utils/sendJwt");
 
 // signUp
 exports.signUp = catchAsyncErorr(async (req, res, next) => {  
-   
-    const newAcc = await userModel.create(req.body);
+  let a  = req.body
+  delete a.OTP
+    const newAcc = await userModel.create(a);
 
     sendJwt(newAcc, res, "Account is crated successfully", 201, req);
   
@@ -31,8 +32,9 @@ exports.login = catchAsyncErorr(async (req, res, next) => {
   const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Wrong Password", 200));
+    return next(new ErrorHandler("Wrong Password", 404));
   }
+  console.log(user);
   sendJwt(user, res, "LogeIn Successfully", 200, req);
 });
  

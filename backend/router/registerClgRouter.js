@@ -11,4 +11,4 @@ Router.route("/getAllRegisterClg").get(isAuthenticated,authorizedRole("admin"),g
 Router.route("/collegeCode/:clgCode").get(isAuthenticated,getClg)
 Router.route("/clgShortName/:clgShortName").get(isAuthenticated,getClgByShortName)
  
-module.exports =Router  
+module.exports =Router   

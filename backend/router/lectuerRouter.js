@@ -12,4 +12,4 @@ Router.route("/user/lecture/:id").delete(isAuthenticated,delete_lecture)
 Router.route("/user/attendance/repace").put(isAuthenticated,findLectureByIDAndReplaceAttendance)
 Router.route("/user/lecture/info/udpate").put(isAuthenticated,findLectureByIDAndUpdate)
    
-module.exports =Router
+module.exports =Router 

@@ -1,10 +1,9 @@
 const express = require('express')
 const error = require('./middleware/error')
 const connectTODatabase = require('./config/dataBase')
-
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const cors  = require("cors")
+//const cors  = require("cors")
 const app = express()
 const fileUpload = require("express-fileupload")
 const path = require("path");
@@ -14,13 +13,14 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     require("dotenv").config({ path: "backend/config/config.env" });
   }
 
- app.use(express.json())
+// app.use(cors())
+app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload())
 
 
-//connection to the data base
+//connection to the data base 
 connectTODatabase()
 
 
@@ -36,6 +36,7 @@ const messageRouter = require('./router/messageRouter')
  
 
 
+
 app.use("/api/v1", facultyRouter)
 app.use("/api/v1", userRouter)
 app.use("/api/v1",studentRouter ) 
@@ -47,10 +48,10 @@ app.use("/api/v1",timeTableRouter)
 app.use("/api/v1",messageRouter)
  
 
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
 
  
