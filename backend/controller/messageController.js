@@ -59,17 +59,16 @@ exports.genrateOtp_email = catchAsyncErorr(async( req,res,next)=>{
 
      // create reusable transporter object using the default SMTP transport
    let transporter = nodemailer.createTransport({
-       host: "smtp.ethereal.email",
-       port: 587,
-       secure: false, // true for 465, false for other ports
+      service: 'gmail',
+        // true for 465, false for other ports
        auth: {
-           user: "daphnee.reichel78@ethereal.email", // generated ethereal user
-           pass: "rKN11VGyMKyjtY4VNe", // generated ethereal password
+           user: "postmantesting205@gmail.com", // generated ethereal user
+           pass: "Postman@7410", // generated ethereal password
        },
    });
 
    let message = {
-       from: '"schoolOil" <daphnee.reichel78@ethereal.email>', // sender address
+       from: '"schoolOil" <postmantesting205@gmail.com>', // sender address
        to: `${req.body.email}`, // list of receivers
        subject: "Verify your email", // Subject line
        text: "", // plain text body
