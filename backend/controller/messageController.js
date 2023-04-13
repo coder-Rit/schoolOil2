@@ -51,7 +51,7 @@ client.messages
 exports.genrateOtp_email = catchAsyncErorr(async( req,res,next)=>{
      
      /** testing account */
-     let testAccount = await nodemailer.createTestAccount();
+    // let testAccount = await nodemailer.createTestAccount();
 
     if (!req.body.email) {
         return next(new ErrorHandler("please enter the email",400))
@@ -63,7 +63,7 @@ exports.genrateOtp_email = catchAsyncErorr(async( req,res,next)=>{
         // true for 465, false for other ports
        auth: {
            user: "postmantesting205@gmail.com", // generated ethereal user
-           pass: "Postman@7410", // generated ethereal password
+           pass: "tsxldqljauuzquri", // generated ethereal password
        },
    });
 
