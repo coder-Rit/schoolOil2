@@ -16,6 +16,18 @@ exports.signUp = catchAsyncErorr(async (req, res, next) => {
     sendJwt(newAcc, res, "Account is crated successfully", 201, req);
   
 }); 
+
+// signUp faculty
+exports.signUpFaculty = catchAsyncErorr(async (req, res, next) => {  
+  let a  = req.body
+     const newAcc = await userModel.create(a);
+
+     res.status(201).json({
+      status: "Account is crated successfully",
+      newUser:newAcc
+     });
+   
+}); 
  
 // loged in
 exports.login = catchAsyncErorr(async (req, res, next) => {
