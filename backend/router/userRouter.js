@@ -1,12 +1,12 @@
 const express = require('express')
-const { signUp, getAllUser, login, logOut, updatePassword, getUserDetails, updateUser, changeTheme, isExist, login_withoutPass,signUpFacult } = require('../controller/userContoller')
+const { signUp, getAllUser, login, logOut, updatePassword, getUserDetails, updateUser, changeTheme, isExist, login_withoutPass, signUpFaculty } = require('../controller/userContoller')
 const { isAuthenticated, authorizedRole } = require('../middleware/auth')
  
 
 const Router = express.Router()
 
 Router.route("/signup").post(signUp)
-Router.route("/signup/faculty").post(isAuthenticated,authorizedRole("teacher"),signUpFacult)
+Router.route("/signup/faculty").post(isAuthenticated,authorizedRole("teacher"),signUpFaculty)
 Router.route("/login").post(login)
 Router.route("/logout").get(logOut)
 Router.route("/user/isExist/:email").get(isExist)
