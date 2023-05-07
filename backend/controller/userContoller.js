@@ -12,12 +12,10 @@ exports.signUp = catchAsyncErorr(async (req, res, next) => {
   let a  = req.body
   delete a.OTP
     const newAcc = await userModel.create(a);
-
     sendJwt(newAcc, res, "Account is crated successfully", 201, req);
   
 }); 
-
-// signUp faculty
+// signUp
 exports.signUpFaculty = catchAsyncErorr(async (req, res, next) => {  
   let a  = req.body
      const newAcc = await userModel.create(a);
@@ -32,9 +30,10 @@ exports.signUpFaculty = catchAsyncErorr(async (req, res, next) => {
 // loged in
 exports.login = catchAsyncErorr(async (req, res, next) => {
   const { email, password } = req.body;
+  
   if (!email || !password) {
     return next(
-      new ErrorHandler("Please enter your email or password of faculty ID", 400)
+      new ErrorHandler("Please enter your email or password", 400)
     );
   } 
   const user = await userModel.findOne({ email }).select("+password"); 
