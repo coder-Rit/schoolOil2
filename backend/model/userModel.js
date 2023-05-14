@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: [true, "This username is aleady taken"],
-        minLength: [4, "Username is too short"],
-        maxLength: [12, "Username is too big"],
+        minLength: [6, "Username is too short"],
+        maxLength: [14, "Username is too big"],
     },
     email: {
         type: String,

@@ -1,33 +1,9 @@
 const mongoose = require("mongoose");
 
 const studentSchema = new mongoose.Schema({
-  personalInfo: {
-    fistName: {
-      type: String,
-      required: [true, "Please enter you fist name"],
-    },
-    middleName: {
-      type: String,
-      required: [true, "Please enter you middle name"],
-    },
-    lastName: {
-      type: String,
-      required: [true, "Please enter you last name"],
-    },
-    age: {
-      type: Number,
-      require: true,
-      minLength: [2, "Incurrect Age"],
-      maxLength: [3, "Incurrect Age"],
-    },
-    gender: {
-      type: String,
-      required: [true, "Please enter your gender"],
-    },
-    DOB: {
-      type: String,
-      required: [true, "Please enter the date of birth"],
-    },
+  Name: {
+    type: String,
+    required: [true, "Please enter you  name"],
   },
   department: {
     type: String,
@@ -40,16 +16,16 @@ const studentSchema = new mongoose.Schema({
   avatar: {
     public_id: {
       type: String,
-      required: true,
+      default: null,
     },
     url: {
       type: String,
-      required: true,
+      default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     },
   },
   email: {
     type: String,
-    required: [true, "Please enter you Email"],
+    default: "NA",
   },
   phoneNumber: {
     type: Number,
@@ -58,6 +34,7 @@ const studentSchema = new mongoose.Schema({
   enNumber: {
     type: String,
     required: [true, "Please enter college name"],
+    unique: [true, "This username is aleady taken"],
   },
   rollNumber: {
     type: Number,

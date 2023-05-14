@@ -1,31 +1,13 @@
 const mongoose = require("mongoose");
 
 const faculty = new mongoose.Schema({
-  personalInfo: {
-    fistName: {
+   
+    Name: {
       type: String,
       required: [true, "Enter you fist name"],
     },
-    middleName: {
-      type: String,
-      required: [true, "Enter you middle name"],
-    },
-
-    lastName: {
-      type: String,
-      required: [true, "Enter you last name"],
-    },
-    age: {
-      type: Number,
-      require: true,
-      minLength: [2, "Incurrect Age"],
-      maxLength: [3, "Incurrect Age"],
-    },
-    gender: {
-      type: String,
-      required: true,
-    },
-  },
+    
+  
   degree: {
     type: String,
     required: [true, "Enter your degree"],
