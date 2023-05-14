@@ -3,21 +3,59 @@ const catchAsyncErorr = require("../middleware/catchAsyncErorr");
 const ErrorHandler = require("../utils/errorHandler");
  
 // creating a studen account
-exports.createAcc = catchAsyncErorr(async (req, res, next) => {
-  let user = await studentModel.findOne({ email: req.body.email });
+exports.updateStudentEmail = catchAsyncErorr(async (req, res, next) => {
+   const  user = await studentModel.findByIdAndUpdate(
+      req.body.id ,
+     { email:req.body.email}
+    );
+ 
+
+  res.status(201).json({
+    status: true,
+    user,
+  });
+});
+
+exports.createAND_update = catchAsyncErorr(async (req, res, next) => {
+ 
+  if (typeof req.body._id !="undefined") {
+    user = await studentModel.findByIdAndUpdate(
+       req.body._id ,
+      req.body
+     );
+  }else{
+    user = await studentModel.create(req.body);
+  }
+ 
+
+  res.status(201).json({
+    status: true,
+    user,
+  });
+});
+
+exports.getStudnetByEN = catchAsyncErorr(async (req, res, next) => {
+ 
+  const user = studentModel.findOne({enNumber:req.params.enNumber})
 
   if (!user) {
-    user = await studentModel.create(req.body);
-  } else {
-    user = await studentModel.findOneAndReplace(
-      { email: req.body.email },
-      req.body
-    );
+    return next(new ErrorHandler("Profile not found", 404));
   }
 
   res.status(201).json({
     status: true,
     user,
+  });
+});
+
+// creating multiple accounts
+exports.createAccs = catchAsyncErorr(async (req, res, next) => {
+  console.log(req.body);
+  let users = await studentModel.insertMany(req.body);
+
+  res.status(201).json({ 
+    status: true,
+    users,
   });
 });
 
@@ -39,7 +77,7 @@ exports.getAllStudent = catchAsyncErorr(async (req, res, next) => {
 
 // get single studen detail
 exports.getStudentDetail = catchAsyncErorr(async (req, res, next) => {
-  const userDetail = await studentModel.findOne({ email: req.params.email });
+  const userDetail = await studentModel.findOne({ enNumber: req.params.enNumber });
 
   if (!userDetail) {
     return next(new ErrorHandler("please update the profile detail", 404));
