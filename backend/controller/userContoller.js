@@ -53,8 +53,7 @@ exports.login = catchAsyncErorr(async (req, res, next) => {
  
 // log out
 exports.logOut = catchAsyncErorr((req, res, next) => {
-  res
-    .clearCookie("token", {
+  res.clearCookie("token", {
       expire: new Date(Date.now() - 1000),
       httpOnly: true,
     })
